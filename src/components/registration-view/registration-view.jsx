@@ -19,7 +19,7 @@ return (
     <form>
       <h1>New User Registration</h1>
       <label>
-        name:
+        Name:
         <input type="text" value={name} onChange={e => setName(e.target.value)} />
       </label>
       <label>
