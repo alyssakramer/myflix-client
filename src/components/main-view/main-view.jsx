@@ -13,7 +13,7 @@ export class MainView extends React.Component {
       movies: [],
       selectedMovie: null,
       user: null, 
-      registration: true
+      showRegisterView: false
     };
   }
 
@@ -47,19 +47,19 @@ export class MainView extends React.Component {
     });
   }
 
-  toRegister(registered) {
+  onShowRegisterView(value) {
     this.setState({
-      registered, 
+      showRegisterView: value, 
     });
   }
 
   render() {
     const { movies, selectedMovie, user, registered } = this.state;
 
-    if (!registered) return <RegistrationView onRegistration={registered => this.onRegistration(registered)} />; 
+    if (showRegisterView) return <RegistrationView onRegistration={registered => this.onRegistration(registered)} onBackClick={() => this.onShowRegisterView(false)} />; 
 
     if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} 
-    toRegister={registered => this.toRegister(registered)} />;
+    toRegister={() => this.onShowRegisterView(true)} />;
 
     if (selectedMovie) return <MovieView movie={selectedMovie} onBackClick={(newSelectedMovie) => {
         this.setSelectedMovie(newSelectedMovie);
