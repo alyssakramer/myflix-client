@@ -43,7 +43,8 @@ export class MainView extends React.Component {
   
   onRegistration(user) {
     this.setState({
-      user, 
+      user,
+      showRegisterView: false 
     });
   }
 
@@ -54,7 +55,7 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const { movies, selectedMovie, user, registered } = this.state;
+    const { movies, selectedMovie, user, showRegisterView } = this.state;
 
     if (showRegisterView) return <RegistrationView onRegistration={registered => this.onRegistration(registered)} onBackClick={() => this.onShowRegisterView(false)} />; 
 
