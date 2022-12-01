@@ -12,12 +12,16 @@ export function RegistrationView(props) {
     const handleSubmit = (e) => {
       e.preventDefault(); 
       console.log(name, username, password, email, birthday); 
-      props.onRegistration(username); 
+      props.onRegistration({name, username, password, email, birthday}); 
     }
 
 return (
     <form>
       <h1>New User Registration</h1>
+      <label>
+        name:
+        <input type="text" value={name} onChange={e => setName(e.target.value)} />
+      </label>
       <label>
         Username:
         <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
