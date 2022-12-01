@@ -9,10 +9,11 @@ export function RegistrationView(props) {
     const [email, setEmail] = useState(""); 
     const [birthday, setBirthday] = useState(""); 
 
-    const handleSubmit = (e) => 
-    e.preventDefault(); 
-    console.log(name, username, password, email, birthday); 
-    props.onRegistration(username); 
+    const handleSubmit = (e) => {
+      e.preventDefault(); 
+      console.log(name, username, password, email, birthday); 
+      props.onRegistration(username); 
+    }
 
 return (
     <form>
@@ -41,4 +42,5 @@ return (
 
 RegistrationView.propTypes = {
   onRegistration: PropTypes.func.isRequired,
+  onBackClick: PropTypes.func.isRequired
 };
