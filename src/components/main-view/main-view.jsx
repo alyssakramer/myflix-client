@@ -1,5 +1,9 @@
 import React from "react";
 import axios from "axios";
+import PropTypes from "prop-types"; 
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
 
 import { RegistrationView } from "../registration-view/registration-view"; 
 import { LoginView } from "../login-view/login-view";
@@ -62,15 +66,20 @@ export class MainView extends React.Component {
     if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} 
     toRegister={() => this.onShowRegisterView(true)} />;
 
-    if (selectedMovie) return <MovieView movie={selectedMovie} onBackClick={(newSelectedMovie) => {
+    <Row className="justify-content-md-center">
+      <Col md={8}>
+      if (selectedMovie) return <MovieView movie={selectedMovie} onBackClick={(newSelectedMovie) => {
         this.setSelectedMovie(newSelectedMovie);
     }} />;
+      </Col>
+    </Row>
 
     if (movies.length === 0) return <div className="main-view">The list is empty</div>;
     
     return (
-      <div className="main-view">
+        <Row className=" main-view justify-content-md-center">
           {movies.map((movie, i) => (
+            <Col md={3}>
             <MovieCard
               key={`${i}-${movie._id}`}
               movie={movie}
@@ -78,9 +87,10 @@ export class MainView extends React.Component {
                 this.setSelectedMovie(movie);
               }}
             />
+            </Col>
           ))
         }
-      </div>
+       </Row>
     );
   }
 }
