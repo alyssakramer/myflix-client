@@ -60,28 +60,40 @@ export class MainView extends React.Component {
 
   render() {
     const { movies, selectedMovie, user, showRegisterView } = this.state;
-
+    
     if (showRegisterView) return <RegistrationView onRegistration={registered => this.onRegistration(registered)} onBackClick={() => this.onShowRegisterView(false)} />; 
 
     if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} 
     toRegister={() => this.onShowRegisterView(true)} />;
 
-    <Row className="justify-content-md-center">
-      <Col md={8}>
-      if (selectedMovie) return <MovieView movie={selectedMovie} onBackClick={(newSelectedMovie) => {
+    // <Row className="justify-content-md-center">
+    //   <Col md={8}>
+    //   if (selectedMovie) return <MovieView movie={selectedMovie} onBackClick={(newSelectedMovie) => {
+    //     this.setSelectedMovie(newSelectedMovie);
+    // }} />;
+    //   </Col>
+    // </Row>
+
+    //Never write jsx without returning it...
+    if (selectedMovie) {
+      return (
+        <Row className="justify-content-md-center">
+         <Col md={8}>
+          <MovieView movie={selectedMovie} onBackClick={(newSelectedMovie) => {
         this.setSelectedMovie(newSelectedMovie);
-    }} />;
-      </Col>
-    </Row>
+    }} />
+     </Col>
+    </Row>)
+  }
 
     if (movies.length === 0) return <div className="main-view">The list is empty</div>;
     
     return (
         <Row className=" main-view justify-content-md-center">
-          {movies.map((movie, i) => (
+          {movies.map((movie) => (
             <Col md={3}>
             <MovieCard
-              key={`${i}-${movie._id}`}
+              key={movie._id} //we have ids now.
               movie={movie}
               onMovieClick={(movie) => {
                 this.setSelectedMovie(movie);

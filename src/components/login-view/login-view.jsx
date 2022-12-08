@@ -49,8 +49,8 @@ export function LoginView(props) {
     </Container>
   );
 }
-
-LoginView.PropTypes = {
+//propTypes not PropTypes
+LoginView.propTypes = {
   onLoggedIn: PropTypes.func.isRequired, 
   toRegister: PropTypes.func.isRequired
 }
