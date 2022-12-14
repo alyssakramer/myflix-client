@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios'; 
 import PropTypes from 'prop-types';
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+import "./movie-view.scss";
 import Button from 'react-bootstrap/Button'; 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -10,22 +13,24 @@ import CardGroup from 'react-bootstrap/CardGroup';
 
 import { MovieCard } from '../movie-card/movie-card'; 
 
-export class MovieView extends React.Component {
+export const MovieView = ({movies}) => {
+  const {movieId} = useParams(); 
+
+  const movie = movie.find((m) => m.id === movieId); 
     
-    render() {
-        const { movie, onBackClick } = this.props; 
-        console.log(movie)
+    render()
+    console.log(movie)
         return (
             <div className="movie-view">
                 <Row> 
-                    <Col> 
+                    <Col md={8}> 
                     <Card>
                     <Card.Title> 
                       <span></span>
                     </Card.Title>
                     <Card.Body>
                     <div className="movie-poster">
-                    <img src={movie.ImagePath} />
+                    <img className="w-100" src={movie.ImagePath}/>
                     </div>
                     <div className="movie.title">
                     <span className="label">Title: </span>
@@ -49,9 +54,9 @@ export class MovieView extends React.Component {
                     </Col>
                 </Row>
             </div>
-        ); 
-    }
-}
+        );
+};
+
 MovieCard.propTypes = {
     movie: PropTypes.shape({
       Title: PropTypes.string.isRequired,

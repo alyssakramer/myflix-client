@@ -1,6 +1,7 @@
 import React from 'react'; 
 import PropTypes from 'prop-types'; 
 import axios from "axios"; 
+import { Link } from "react-router-dom";
 
 import Button from 'react-bootstrap/Button'; 
 import Card from 'react-bootstrap/Card';
@@ -20,7 +21,9 @@ export class MovieCard extends React.Component {
               <Card.Body>
               <Card.Title>{movie.Title}</Card.Title>
               <Card.Text>{movie.description}</Card.Text>
-              <Button onClick={() => onMovieClick(movie)} variant="link">Open</Button>
+              <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
+                <Button  variant="link">Open</Button>
+              </Link>
               </Card.Body>
             </Card>
             </Col>

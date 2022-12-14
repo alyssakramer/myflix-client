@@ -5,7 +5,7 @@
   "source": "src/index.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev" : "parcel src/index.html"
+    "dev": "parcel src/index.html"
   },
   "repository": {
     "type": "git",
@@ -19,10 +19,13 @@
   "homepage": "https://github.com/alyssakramer/myflix-client#readme",
   "dependencies": {
     "axios": "^1.2.0",
+    "bootstrap": "^5.2.3",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
+    "react-bootstrap": "*",
     "react-dom": "^18.2.0",
-    "react-bootstrap":"*"
+    "react-router": "^6.4.5",
+    "react-router-dom": "^6.4.5"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.0",

@@ -25,7 +25,7 @@ export function RegistrationView(props) {
 return (
   <Container>
     <Row>
-      <Col>
+      <Col md={5}>
         <CardGroup>
           <Card>
           <Card.Body>

@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
+import { BrowserRouter, Routes, Route, Naviagte } from "react-router-dom"; 
 
 import { RegistrationView } from "../registration-view/registration-view"; 
 import { LoginView } from "../login-view/login-view";
@@ -15,7 +16,7 @@ export class MainView extends React.Component {
     super();
     this.state = {
       movies: [],
-      selectedMovie: null,
+      selectedMovie: ([]),
       user: null, 
       showRegisterView: false
     };
@@ -89,22 +90,63 @@ export class MainView extends React.Component {
     if (movies.length === 0) return <div className="main-view">The list is empty</div>;
     
     return (
-        <Row className=" main-view justify-content-md-center">
-          {movies.map((movie) => (
-            <Col md={3}>
-            <MovieCard
-              key={movie._id} //we have ids now.
-              movie={movie}
-              onMovieClick={(movie) => {
-                this.setSelectedMovie(movie);
-              }}
-            />
-            </Col>
-          ))
-        }
-       </Row>
+      <BrowserRouter> 
+        <Row className="justify-content-md-center">
+          <Routes>
+            <Route
+              path="/registration"
+              element={
+                <>
+                {user ? (
+                  <Naviagte to="/" />
+                ) : (
+                  <Col md={5}>
+                    <RegistrationView />
+                  </Col>
+                )}
+                </>
+              }
+              />
+              <Route 
+                path="login"
+                element={
+                  <>
+                  {user ? (
+                    <Naviagte to="/" /> 
+                  ) : (
+                    movie.length === 0 ? (
+                      <Col>This list is empty!</Col>
+                    ) : (
+                      <Col md={8}>
+                        <MovieView movies={movies} />
+                      </Col>
+                    )
+                  )}
+                  </>
+                }
+              />
+              <Route 
+                path="/"
+                element={
+                  <>
+                    {!user ? (
+                      <Naviagte to="/login" replace />
+                    ) : movie.length === 0 ? (
+                      <Col>This list is empty</Col>
+                    ) : (
+                      <>
+                      {movie.map((movie) => (
+                        <Col className="mb-4" key={movie.id} md={3}>
+                          <MovieCard movie={movie} /> 
+                        </Col>
+                      ))}
+                      </> 
+                    )}
+                  </>
+                }
+              />
+          </Routes>
+        </Row>
+      </BrowserRouter>
     );
-  }
-}
-
-
+  };
