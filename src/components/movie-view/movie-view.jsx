@@ -18,10 +18,8 @@ export const MovieView = ({ movies }) => {
 
   const movie = movies.find((m) => m._id === movieId);
 
-  console.log(movie)
-
   if(!movie){
-    return null
+    return <div>Couldn't find movie data</div>
   }
 
   return (
