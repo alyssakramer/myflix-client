@@ -1,123 +1,66 @@
-import React, { useState, useEffect } from "react";
-import { Axios } from "axios";
-import PropTypes from "prop-types"; 
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import { BrowserRouter, Routes, Route, Naviagte } from "react-router-dom"; 
+import React from "react";
+import axios from "axios";
+import Row from "react-bootstrap/Row";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { RegistrationView } from "../registration-view/registration-view"; 
+import { RegistrationView } from "../registration-view/registration-view";
 import { LoginView } from "../login-view/login-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
-import { NavigationBar } from "../navigation-bar/navigation-bar";
+import { ProtectedRoute } from "../protected-view/protected-view";
 
-export class MainView extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      movies: [],
-      selectedMovie: null,
-      user: null, 
-      showRegisterView: true, 
-    };
-  }
+export function MainView() {
+  //useState docs
+  // https://reactjs.org/docs/hooks-state.html
+  const [movies, setMovies] = React.useState([]);
+  const [user, setUser] = React.useState(null);
 
-  componentDidMount() {
-   axios.get("https://my-flix.onrender.com/movies")
+  React.useEffect(() => {
+    //More on useEffect. The picture below explains it in a simple way.
+    //https://miro.medium.com/max/1400/1*2jfxjw5gHyRDjK45ydqypw.webp 
+    axios
+      .get("https://my-flix.onrender.com/movies")
       .then((response) => {
-        this.setState({
-          movies: response.data,
-        });
+        setMovies(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }
+  }, []);
 
- setSelectedMovie(newSelectedMovie) {
-   this.setState({
-      selectedMovie: newSelectedMovie,
-    });
-  }
-
-  onLoggedIn(user) {
-    this.setState({
-      user, 
-    });
-  }
-  
-  onRegistration(user) {
-    this.setState({
-      user,
-      showRegisterView: false 
-    });
-  }
-
-  onShowRegisterView(value) {
-    this.setState({
-      showRegisterView: value, 
-    });
-  }
-}; 
-
-return (
-  <BrowserRouter> 
-    <Row className="justify-content-md-center">
-      <Routes>
-        <Route
-          path="/registration"
-          element={
-            <>
-            {user ? (
-              <Naviagte to="/" />
-            ) : (
-              <Col md={5}>
-                <RegistrationView />
-              </Col>
-            )}
-            </>
-          }
+  return (
+    <BrowserRouter>
+      <Row className="justify-content-md-center">
+        <Routes>
+          <Route
+            path="/registration"
+            element={<RegistrationView onRegistration={setUser} />}
           />
-          <Route 
-            path="login"
-            element={
-              <>
-              {user ? (
-                <Naviagte to="/" /> 
-              ) : (
-                movie.length === 0 ? (
-                  <Col>This list is empty!</Col>
-                ) : (
-                  <Col md={8}>
-                    <MovieView movies={movies} />
-                  </Col>
-                )
-              )}
-              </>
-            }
+          <Route path="/login" element={<LoginView onLoggedIn={setUser} />} />
+          <Route
+            path="/movies/:movieId"
+            element={<MovieView movies={movies} />}
           />
-          <Route 
+          <Route
+            index
             path="/"
             element={
-              <>
-                {!user ? (
-                  <Naviagte to="/login" replace />
-                ) : movie.length === 0 ? (
-                  <Col>This list is empty</Col>
+              <ProtectedRoute user={user}>
+                {movies.length === 0 ? (
+                  <div className="main-view">The list is empty</div>
                 ) : (
-                  <>
-                  {movie.map((movie) => (
-                    <Col className="mb-4" key={movie.id} md={3}>
-                      <MovieCard movie={movie} /> 
-                    </Col>
-                  ))}
-                  </> 
+                  <Row>
+                    {movies.map((movie) => (
+                      <MovieCard movie={movie} key={movie._id} />
+                    ))}
+                  </Row>
                 )}
-              </>
+              </ProtectedRoute>
             }
           />
-      </Routes>
-    </Row>
-  </BrowserRouter>
-);
+          <Route path="*" element={<div>404 Are you lost?</div>} />
+        </Routes>
+      </Row>
+    </BrowserRouter>
+  );
+}

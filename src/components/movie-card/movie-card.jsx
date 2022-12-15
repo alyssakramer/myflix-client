@@ -11,20 +11,18 @@ import Col from 'react-bootstrap/Col';
 
 export const MovieCard = ({ movie, onMovieClick }) => {
         return (
-          <Row>
-            <Col>
+          <Col className="mb-4" md={3}>
             <Card>
              <Card.Img variant="top" src={movie.ImagePath} /> 
               <Card.Body>
               <Card.Title>{movie.Title}</Card.Title>
               <Card.Text>{movie.description}</Card.Text>
-              <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
+              <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
                 <Button  variant="link">Open</Button>
               </Link>
               </Card.Body>
             </Card>
             </Col>
-          </Row>
         ); 
 }
 
