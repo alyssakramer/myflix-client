@@ -7,12 +7,12 @@ import { Navigate, useLocation } from "react-router-dom";
 
     example:
         <ProtectedRoute user={boolean}>
-            <Component /> // Children
+            <Component /> // Children. Read more here https://codeburst.io/a-complete-guide-to-props-children-in-react-c315fab74e7c
         </ProtectedRoute>
 */
 export function ProtectedRoute ({ user, children }){
     const location = useLocation()
-    
+
     if (!user) {
       return <Navigate to="/login" replace state={{ from: location }} />;
     }
