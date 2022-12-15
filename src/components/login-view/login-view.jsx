@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
-import CardGroup from 'react-bootstrap/CardGroup';
+import {Card, Container, Form, Button } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
 
 export function LoginView(props) {
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,6 +15,7 @@ export function LoginView(props) {
     /* Send a request to the server for authentication */
     /* then call props.onLoggedIn(username) */
     props.onLoggedIn(username);
+    navigate("/")
   };
   const handleRegisterClick = (e) => {
     e.preventDefault();

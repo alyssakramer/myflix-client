@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types'; 
-import { useState } from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import CardGroup from 'react-bootstrap/CardGroup';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
+import {Form, Card, Row, Col, Container, CardGroup, Button} from 'react-bootstrap/Form';
+import { useNavigate } from "react-router-dom";
 
 export function RegistrationView(props) {
     const [name, setName] = useState("");
@@ -16,10 +10,13 @@ export function RegistrationView(props) {
     const [email, setEmail] = useState("");
     const [birthday, setBirthday] = useState(""); 
 
+    const navigate = useNavigate()
+
     const handleSubmit = (e) => {
       e.preventDefault(); 
       console.log(name, username, password, email, birthday); 
-      props.onRegistration({name, username, password, email, birthday}); 
+      props.onRegistration({name, username, password, email, birthday});
+      navigate("/") 
     }
 
 return (
