@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 export function LoginView(props) {
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
-  const navigate = useNavigate()
+
+  const navigate = useNavigate() //Hook that allows navigation in function check line 19 and 23
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +20,7 @@ export function LoginView(props) {
   };
   const handleRegisterClick = (e) => {
     e.preventDefault();
-    props.toRegister();
+    navigate("/register") 
   };
 
   return (
@@ -40,7 +41,7 @@ export function LoginView(props) {
          <Button variant="primary" type="submit" onClick={handleSubmit}>
           Submit
           </Button>
-          <Button type="submit" onClick={handleSubmit}>Register</Button>
+          <Button type="submit" onClick={handleRegisterClick}>Register</Button>
           </Form>
         </Card.Body>
       </Card>
