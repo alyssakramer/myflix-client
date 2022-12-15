@@ -9,10 +9,7 @@ import CardGroup from 'react-bootstrap/CardGroup';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-export class MovieCard extends React.Component {
-    render() {
-        const { movie, onMovieClick } = this.props;
-
+export const MovieCard = ({ movie, onMovieClick }) => {
         return (
           <Row>
             <Col>
@@ -29,7 +26,6 @@ export class MovieCard extends React.Component {
             </Col>
           </Row>
         ); 
-    }
 }
 
 MovieCard.propTypes = {
