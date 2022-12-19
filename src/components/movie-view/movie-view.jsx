@@ -13,7 +13,7 @@ import CardGroup from "react-bootstrap/CardGroup";
 
 import { MovieCard } from "../movie-card/movie-card";
 
-export const MovieView = ({ movies }) => {
+export const MovieView = ({ movies, addFavoriteMovie }) => {
   const { movieId } = useParams();
 
   const movie = movies.find((m) => m._id === movieId);
@@ -50,6 +50,9 @@ export const MovieView = ({ movies }) => {
                 <span className="label">Genre: </span>
                 <span className="value">{movie.Genre.Name}</span>
               </div>
+              <Button variant="link">
+                Add to Favorites 
+              </Button>
                   <Link to={`/`}>
                 <Button  variant="link">Back</Button>
               </Link>
@@ -78,4 +81,5 @@ MovieCard.propTypes = {
     Featured: PropTypes.bool,
   }).isRequired,
   onBackClick: PropTypes.func.isRequired,
+  onAddFavorite: PropTypes.func.isRequired, 
 };
