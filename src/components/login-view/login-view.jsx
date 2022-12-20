@@ -20,7 +20,7 @@ export function LoginView(props) {
   };
   const handleRegisterClick = (e) => {
     e.preventDefault();
-    navigate("/register") 
+    navigate("/registration") 
   };
 
   return (

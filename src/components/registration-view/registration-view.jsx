@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types'; 
-import {Form, Card, Row, Col, Container, CardGroup, Button} from 'react-bootstrap/Form';
+import {Form, Card, Row, Col, Container, CardGroup, Button} from 'react-bootstrap/';
 import { useNavigate } from "react-router-dom";
 
 export function RegistrationView(props) {
