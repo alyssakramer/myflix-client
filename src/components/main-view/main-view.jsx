@@ -32,6 +32,7 @@ export function MainView() {
 
   return (
     <BrowserRouter>
+      <NavigationBar user={user} /> 
       <Row className="justify-content-md-center">
         <Routes>
           <Route
@@ -60,6 +61,14 @@ export function MainView() {
               </ProtectedRoute>
             }
           />
+          <Route
+          path="/user/:username"
+          element={
+            <ProtectedRoute user={user}>
+              <ProfileView movies={movies} /> 
+            </ProtectedRoute>
+          }
+          /> 
           <Route path="*" element={<div>404 Are you lost?</div>} />
         </Routes>
       </Row>
