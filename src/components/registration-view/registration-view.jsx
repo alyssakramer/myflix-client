@@ -82,7 +82,9 @@ return (
         </Form.Group>
      
         <Button type="submit" onClick={handleSubmit}>Register</Button>
-        <Button type="button" onClick={() => {props.onBackClick(null);}}>Return to Login Page</Button>
+        <Button type="button" onClick={() => {
+          navigate("/")
+        }}>Return to Login Page</Button>
         </Form>
         </Card.Body>
         </Card>
@@ -94,6 +96,5 @@ return (
 }; 
 
 RegistrationView.propTypes = {
-  onRegistration: PropTypes.func.isRequired,
-  onBackClick: PropTypes.func.isRequired
+  onRegistration: PropTypes.func.isRequired
 };

@@ -13,6 +13,7 @@ export function NavigationBar() {
      };
 
     const isAuth = () => {
+        const user = localStorage.getItem("token") || props.user
         if (typeof window == "undefined") {
             return false; 
         }
@@ -25,7 +26,7 @@ export function NavigationBar() {
 
 
     return (
-        <Navbar className="bright-bg w-100" variant="dark" expand="lg">
+        <Navbar className="bright-bg w-100" variant="light" expand="lg">
         <Navbar.Brand href="#">My Flix App</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -46,7 +47,7 @@ export function NavigationBar() {
             ) : (
               <>
                 {" "}
-                <Link className="nav-link" to="/register">
+                <Link className="nav-link" to="/registration">
                   Sign Up
                 </Link>
               </>

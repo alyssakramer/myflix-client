@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom"; 
 import { Figure } from "react-bootstrap"; 
 
-export default class ProfileView extends React.Component {
+export class ProfileView extends React.Component {
     constructor() {
         super(); 
         this.state = {
@@ -112,7 +112,7 @@ export default class ProfileView extends React.Component {
         console.log(movie)
         axios
           .delete(
-            `https://datenightmovies.herokuapp.com/users/${username}/movies/${movie}`,
+            `https://my-flix.onrender.com/users/${username}/movies/${movie}`,
             { headers: { Authorization: `Bearer ${token}` } }
           )
           .then((response) => {
@@ -176,14 +176,6 @@ export default class ProfileView extends React.Component {
   render() {
     const { movies } = this.props;
     const { FavoriteMovies, Username, Email, Birthday, Password } = this.state;
-
-    const myFavoritesMovies = [];
-    for (let index = 0; index < movies.length; index++) {
-      const movie = movies[index];
-      if (FavoriteMovies.includes(movie._id)) {
-        myFavoritesMovies.push(movie);
-      }
-    }
 
     return (
       <Container>

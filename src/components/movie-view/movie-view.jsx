@@ -80,6 +80,5 @@ MovieCard.propTypes = {
     ImagePath: PropTypes.string.isRequired,
     Featured: PropTypes.bool,
   }).isRequired,
-  onBackClick: PropTypes.func.isRequired,
-  onAddFavorite: PropTypes.func.isRequired, 
+ // onAddFavorite: PropTypes.func.isRequired, 
 };
