@@ -175,7 +175,7 @@ export class ProfileView extends React.Component {
   }
   render() {
     const { movies } = this.props;
-    const { FavoriteMovies, Username, Email, Birthday, Password } = this.state;
+    const { FavoriteMovies, Username, Email, Birthday, Password, Name } = this.state;
 
     return (
       <Container>
@@ -289,7 +289,7 @@ export class ProfileView extends React.Component {
               </Col>
             </Row>
             <Row>
-              {myFavoritesMovies.map((movie) => (
+              {FavoritesMovies.map((movie) => (
                 <Col key={movie._id} className="fav-movie">
                   <Figure>
                     <Link to={`/movies/${movie._id}`}>
