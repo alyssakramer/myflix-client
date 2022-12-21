@@ -13,7 +13,7 @@ export function NavigationBar() {
      };
 
     const isAuth = () => {
-        const user = localStorage.getItem(token) || props.user
+        const user = localStorage.getItem("token") || props.user
         if (typeof window == "undefined") {
             return false; 
         }
