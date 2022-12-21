@@ -9,7 +9,7 @@ export function NavigationBar() {
     e.preventDefault();
     localStorage.clear();
     window.open("/", "_self");
-    props.onLoggedOut(user);
+    props.onLoggedOut(props.user);
      };
 
     const isAuth = () => {
@@ -18,7 +18,7 @@ export function NavigationBar() {
             return false; 
         }
         if (localStorage.getItem("token")) {
-            return user //localStorage.getItem("token"); 
+            return user // localStorage.getItem("token"); 
         } else {
             return false; 
         }
