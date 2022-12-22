@@ -36,7 +36,7 @@ export class ProfileView extends React.Component {
                     Password: response.data.Password,
                     Email: response.data.Email,
                     Birthday: response.data.Birthday,
-                    FavoriteMovies: response.data.FavoriteMovies,  
+                    FavoritesMovies: response.data.FavoritesMovies,  
                 }); 
             })
             .cath(function (error) {
@@ -175,7 +175,7 @@ export class ProfileView extends React.Component {
   }
   render() {
     const { movies } = this.props;
-    const { FavoriteMovies, Username, Email, Birthday, Password, Name } = this.state;
+    const { FavoritesMovies, Username, Email, Birthday, Password, Name } = this.state;
 
     return (
       <Container>

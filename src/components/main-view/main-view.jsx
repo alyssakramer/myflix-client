@@ -62,7 +62,7 @@ export function MainView() {
             }
           />
           <Route
-          path="/user/:username"
+          path="/users/:username"
           element={
             <ProtectedRoute user={user}>
               <ProfileView movies={movies} /> 
