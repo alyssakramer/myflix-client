@@ -2,7 +2,7 @@ import { Navbar, Container, Nav, Button, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom"; 
 import { React } from "react"; 
 
-export function NavigationBar() {
+export function NavigationBar(props) {
     let user = localStorage.getItem("user");
 
     const handleLogOut = (e) => {
