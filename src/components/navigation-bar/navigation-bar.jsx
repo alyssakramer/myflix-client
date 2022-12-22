@@ -54,6 +54,9 @@ export function NavigationBar(props) {
                 <Link className="nav-link" to="/registration">
                   Sign Up
                 </Link>
+                <p className="nav-link" onClick={handleLogOut}>
+                  Log Out
+                </p>
               </>
             )}
           </Nav>
