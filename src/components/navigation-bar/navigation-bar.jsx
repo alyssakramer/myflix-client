@@ -47,7 +47,7 @@ export function NavigationBar(props) {
             ) : (
               <>
                 {" "}
-                 <Link className="nav-link mr-2" to={`/users/${user}`}>
+                <Link className="nav-link mr-2" to={`/users/${user}`}>
                   Profile
                 </Link>
                 {" "}

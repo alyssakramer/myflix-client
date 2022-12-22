@@ -39,7 +39,7 @@ export class ProfileView extends React.Component {
                     FavoritesMovies: response.data.FavoritesMovies,  
                 }); 
             })
-            .cath(function (error) {
+            .catch(function (error) {
                 console.log(error); 
             }); 
     }; 
