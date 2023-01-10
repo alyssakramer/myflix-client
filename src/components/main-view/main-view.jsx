@@ -50,7 +50,7 @@ export function MainView() {
             element={
               <ProtectedRoute user={user}>
                 {movies.length === 0 ? (
-                  <div className="main-view">The list is empty</div>
+                  <div className="main-view">Loading...</div>
                 ) : (
                   <Row>
                     {movies.map((movie) => (
