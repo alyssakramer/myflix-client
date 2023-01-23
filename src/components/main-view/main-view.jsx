@@ -23,7 +23,12 @@ export function MainView() {
     axios
       .get("https://my-flix.onrender.com/movies")
       .then((response) => {
+        //if () {
+          //const filterMovies = movies.filter();
+          //setMovies(filterMovies);
+        //} else {
         setMovies(response.data);
+        //}
       })
       .catch((error) => {
         console.log(error);
@@ -75,3 +80,4 @@ export function MainView() {
     </BrowserRouter>
   );
 }
+export default MainView;
