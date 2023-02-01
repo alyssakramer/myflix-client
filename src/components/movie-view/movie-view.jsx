@@ -11,12 +11,29 @@ import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
 
+import VisibilityFilterInput from '../visibility-filter-input/visibility-filter-input';
 import { MovieCard } from "../movie-card/movie-card";
+import { connect } from "react-redux";
 
-export const MovieView = ({ movies, addFavoriteMovie }) => {
+
+const mapStateToProps = state => {
+  const { visibilityFilter } = state; 
+  return { visibilityFilter };
+}; 
+
+
+function MovieView(props) {
+  const { movies, visibilityFilter } = props; 
   const { movieId } = useParams();
+  let filteredMovies = movies; 
 
   const movie = movies.find((m) => m._id === movieId);
+
+  if (visibilityFilter !== '') {
+    filteredMovies = movies.filter(
+      m => m.Title.toLowerCase().includes(
+        visibilityFilter.toLowerCase()))
+  } 
 
   if(!movie){
     return <div>Couldn't find movie data</div>
@@ -25,7 +42,11 @@ export const MovieView = ({ movies, addFavoriteMovie }) => {
   return (
     <div className="movie-view">
       <Row>
-        <Col md={8}>
+      <Col>
+        <VisibilityFilterInput visibilityFilter={visibilityFilter} />
+      </Col>
+      {filteredMovies.map(m => (
+      <Col>
           <Card>
             <Card.Title>
               <span></span>
@@ -59,6 +80,7 @@ export const MovieView = ({ movies, addFavoriteMovie }) => {
             </Card.Body>
           </Card>
         </Col>
+        ))}
       </Row>
     </div>
   );
@@ -82,3 +104,5 @@ MovieCard.propTypes = {
   }).isRequired,
  // onAddFavorite: PropTypes.func.isRequired, 
 };
+
+export default connect(mapStateToProps)(MovieView);

@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import Row from "react-bootstrap/Row";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { connect } from "react-redux";
 
 import { RegistrationView } from "../registration-view/registration-view";
 import { LoginView } from "../login-view/login-view";
@@ -80,4 +81,9 @@ export function MainView() {
     </BrowserRouter>
   );
 }
-export default MainView;
+
+let mapStateToProps = state => {
+  return {visibilityFilter};
+}; 
+
+export default connect(mapStateToProps)(MainView);
